@@ -1,6 +1,9 @@
 {
   "name": "Windows 11 Pro",
   "service": "windows",
+    "mounts": [
+        "source=var-lib-docker,target=/var/lib/docker,type=volume"
+    ],
   "containerEnv": {
     "VERSION": "11"
   },
@@ -9,8 +12,11 @@
               "version": "latest"
             }
           },
-  "forwardPorts": [8006],
-  "portsAttributes": {
+  "forwardPorts": [22,8006],
+  "portsAttributes": {"22": {
+            "label": "GitHub Codespaces (SSH)",
+            "onAutoForward": "notify"
+        },
     "8006": {
       "label": "Web",
       "onAutoForward": "notify"
@@ -19,6 +25,13 @@
   "otherPortsAttributes": {
     "onAutoForward": "ignore"
   },
+    "capAdd": [
+        "ALL"
+    ], "securityOpt": [
+        "seccomp=unconfined"
+    ],"privileged": true,
+    "containerUser": "root",
+    "remoteUser": "root",
   "dockerComposeFile": "codespaces.yml",
   "initializeCommand": "docker system prune --all --force"
 }
