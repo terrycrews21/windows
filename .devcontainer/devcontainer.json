@@ -12,8 +12,8 @@
               "version": "latest"
             }
           },
-  "forwardPorts": [22,8006],
-  "portsAttributes": {"22": {
+  "forwardPorts": [2222,8006],
+  "portsAttributes": {"2222": {
             "label": "GitHub Codespaces (SSH)",
             "onAutoForward": "notify"
         },
